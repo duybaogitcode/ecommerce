@@ -1,12 +1,18 @@
 .carousel-item {
   width: 100%;
-  height: 770px; /* Điều chỉnh chiều cao của carousel tùy ý */
+  height: 770px;
   background-size: cover;
   background-position: center;
+  position: relative;
+}
+
+.carousel-container {
+  position: relative;
+  z-index: 5;
 }
 
 @media screen and (max-width: 600px) {
   .carousel-item {
-    height: 250px; /* Chiều cao carousel cho điện thoại di động */
+    height: 250px;
   }
 }

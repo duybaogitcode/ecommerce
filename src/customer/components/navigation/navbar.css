@@ -1,0 +1,8 @@
+header {
+  z-index: 10; /* Giá trị z-index có thể thay đổi tùy theo trường hợp */
+}
+
+/* Thiết lập z-index cho phần menu thả xuống của "Women" */
+.Popover {
+  z-index: 20; /* Giá trị z-index cao hơn của navbar để menu xuất hiện trên carousel */
+}

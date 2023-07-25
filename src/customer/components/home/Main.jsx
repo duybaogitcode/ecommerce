@@ -10,15 +10,17 @@ const Main = () => {
   ));
 
   return (
-    <AliceCarousel
-      animationType='fadeout'
-      animationDuration={800}
-      disableButtonsControls
-      infinite
-      autoPlay
-      autoPlayInterval={2000}
-      items={items}
-    />
+    <div className='carousel-container'>
+      <AliceCarousel
+        animationType='fadeout'
+        animationDuration={800}
+        disableButtonsControls
+        infinite
+        autoPlay
+        autoPlayInterval={2000}
+        items={items}
+      />
+    </div>
   );
 };
 
