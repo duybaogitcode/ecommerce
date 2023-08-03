@@ -6,6 +6,13 @@ module.exports = {
       height: {
         148: '48rem',
       },
+      screens: {
+        tablet: '640px',
+
+        laptop: '1024px',
+
+        desktop: '1280px',
+      },
     },
   },
   plugins: [],

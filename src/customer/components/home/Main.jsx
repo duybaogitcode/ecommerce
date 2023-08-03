@@ -7,7 +7,7 @@ const Main = () => {
   const items = homeImage.map((item, index) => (
     <img
       key={index}
-      className='object-cover object-center w-full h-148'
+      className='object-cover object-center w-full desktop:h-148 tablet:h-64 '
       src={item.image}
       role='presentation'
       alt=''
