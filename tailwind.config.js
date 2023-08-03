@@ -7,7 +7,7 @@ module.exports = {
         148: '48rem',
       },
       screens: {
-        tablet: '640px',
+        tablet: '600px',
 
         laptop: '1024px',
 

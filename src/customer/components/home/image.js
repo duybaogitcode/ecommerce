@@ -1,7 +1,7 @@
 export const homeImage = [
   {
     image:
-      'https://firebasestorage.googleapis.com/v0/b/fxchangesapmle.appspot.com/o/duybao%2F20210401_RRhGMiO45aFfqXXlU1HaKVxT.png?alt=media&token=24aab26c-9a7d-415b-9499-203cf590d745',
+      'https://firebasestorage.googleapis.com/v0/b/fxchangesapmle.appspot.com/o/c%23%2Fbanner---bst-polo-hoa-tiet-desktop_1.jpg?alt=media&token=f1acf355-ca45-4ecb-8177-ea03a6dd2ef3',
   },
   {
     image:
