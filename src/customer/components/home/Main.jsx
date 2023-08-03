@@ -2,15 +2,20 @@ import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { homeImage } from './image';
-import './home.css';
 
 const Main = () => {
   const items = homeImage.map((item, index) => (
-    <div key={index} className='carousel-item' style={{ backgroundImage: `url(${item.image})` }} />
+    <img
+      key={index}
+      className='object-cover object-center w-full h-148'
+      src={item.image}
+      role='presentation'
+      alt=''
+    />
   ));
 
   return (
-    <div className='carousel-container'>
+    <div className='relative z-5'>
       <AliceCarousel
         animationType='fadeout'
         animationDuration={800}

@@ -12,7 +12,7 @@ function HomeSectionCarousel() {
     1024: { items: 5 },
   };
 
-  const items = [1, 1, 1, 1, 1, 1, 1, 1, 1].map((item) => <HomeSectionCard key={item} />);
+  const items = Array.from({ length: 5 }).map((item) => <HomeSectionCard key={item} />);
   return (
     <div className='flex items-center justify-center'>
       <Button variant='contained' className='z-50' sx={{ position: 'absolute', left: '0rem' }}>
