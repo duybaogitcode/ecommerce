@@ -5,9 +5,7 @@ import HomeSectionCarousel from '../../components/homeSection/homeSectionCarouse
 export const HomePage = () => {
   return (
     <div>
-      HomePage
       <Main></Main>
-      Product
       <HomeSectionCarousel></HomeSectionCarousel>
     </div>
   );

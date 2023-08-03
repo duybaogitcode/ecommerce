@@ -294,7 +294,7 @@ export default function Navigation() {
 
       <header className='relative bg-white'>
         <p className='flex items-center justify-center h-10 px-4 text-sm font-medium text-white bg-indigo-600 sm:px-6 lg:px-8'>
-          Get free delivery on orders over $100
+          Style Up Your Wardrobe with Our Trendy Tees!
         </p>
 
         <nav aria-label='Top' className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'>
