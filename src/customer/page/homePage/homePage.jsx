@@ -6,7 +6,11 @@ export const HomePage = () => {
   return (
     <div>
       <Main></Main>
-      <HomeSectionCarousel></HomeSectionCarousel>
+      <div className='space-y-10'>
+        <HomeSectionCarousel></HomeSectionCarousel>
+        <HomeSectionCarousel></HomeSectionCarousel>
+        <HomeSectionCarousel></HomeSectionCarousel>
+      </div>
     </div>
   );
 };
