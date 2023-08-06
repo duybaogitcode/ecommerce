@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import HomeSectionCard from './homeSectionCard';
 import { Button } from '@mui/material';
@@ -10,11 +10,11 @@ function HomeSectionCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const prev = () => {
-    setActiveIndex(activeIndex - 1);
+    setActiveIndex((prevIndex) => Math.max(prevIndex - 5, 0));
   };
 
   const next = () => {
-    setActiveIndex(activeIndex + 1);
+    setActiveIndex((prevIndex) => Math.min(prevIndex + 5, itemsImage.length - 1));
   };
 
   const responsive = {
@@ -22,6 +22,13 @@ function HomeSectionCarousel() {
     680: { items: 2 },
     1024: { items: 5 },
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % itemsImage.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const items = itemsImage.map((item) => <HomeSectionCard item={item} />);
   return (
@@ -39,9 +46,9 @@ function HomeSectionCarousel() {
         disableDotsControls
         disableButtonsControls
         infinite
-        autoPlay
-        autoPlayInterval={1000}
         responsive={responsive}
+        onSlideChanged={setActiveIndex}
+        activeIndex={activeIndex}
       />
       <Button
         onClick={next}
