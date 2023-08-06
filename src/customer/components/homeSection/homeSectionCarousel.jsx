@@ -4,15 +4,16 @@ import HomeSectionCard from './homeSectionCard';
 import { Button } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import { itemsImage } from './item';
 
 function HomeSectionCarousel() {
   const responsive = {
     0: { items: 1 },
-    720: { items: 2 },
+    680: { items: 2 },
     1024: { items: 5 },
   };
 
-  const items = Array.from({ length: 10 }).map((item) => <HomeSectionCard key={item} />);
+  const items = itemsImage.map((item) => <HomeSectionCard item={item} />);
   return (
     <div className='flex items-center border desktop:px-4'>
       <Button variant='contained' className='z-50' sx={{ position: 'absolute', left: '0rem' }}>
