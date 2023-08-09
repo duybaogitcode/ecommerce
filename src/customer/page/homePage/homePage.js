@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../../components/home/main';
+import Main from '../../components/home/homeMain';
 import HomeSectionCarousel from '../../components/homeSection/homeSectionCarousel';
 
 export const HomePage = () => {
