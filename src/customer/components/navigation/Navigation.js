@@ -7,6 +7,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import './navbar.css';
+import { useCart } from '../context/cartContext';
 
 const navigation = {
   categories: [
@@ -139,9 +140,9 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
+  const { cartCount } = useCart();
   const [state, setState] = useState({
     open: false,
-    cartCount: 0,
   });
 
   return (
@@ -278,7 +279,7 @@ export default function Navigation() {
                   </div>
                 </div>
 
-                <div className='px-4 py-6 border-t border-gray-200'>
+                {/* <div className='px-4 py-6 border-t border-gray-200'>
                   <a href='#' className='flex items-center p-2 -m-2'>
                     <img
                       src='https://tailwindui.com/img/flags/flag-canada.svg'
@@ -288,7 +289,7 @@ export default function Navigation() {
                     <span className='block ml-3 text-base font-medium text-gray-900'>CADAA</span>
                     <span className='sr-only'>, change currency</span>
                   </a>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -478,7 +479,7 @@ export default function Navigation() {
                       aria-hidden='true'
                     />
                     <span className='ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800'>
-                      0
+                      ({cartCount})
                     </span>
                     <span className='sr-only'>items in cart, view bag</span>
                   </a>
