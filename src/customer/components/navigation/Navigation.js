@@ -139,13 +139,16 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false);
+  const [state, setState] = useState({
+    open: false,
+    cartCount: 0,
+  });
 
   return (
     <div className='bg-white'>
       {/* Mobile menu */}
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as='div' className='relative z-40 lg:hidden' onClose={setOpen}>
+      <Transition.Root show={state.open} as={Fragment}>
+        <Dialog as='div' className='relative z-40 lg:hidden' onClose={setState.open}>
           <Transition.Child
             as={Fragment}
             enter='transition-opacity ease-linear duration-300'
@@ -173,7 +176,7 @@ export default function Navigation() {
                   <button
                     type='button'
                     className='inline-flex items-center justify-center p-2 -m-2 text-gray-400 rounded-md'
-                    onClick={() => setOpen(false)}
+                    onClick={() => setState.open(false)}
                   >
                     <span className='sr-only'>Close menu</span>
                     <XMarkIcon className='w-6 h-6' aria-hidden='true' />
@@ -270,7 +273,7 @@ export default function Navigation() {
                   </div>
                   <div className='flow-root'>
                     <a href='#' className='block p-2 -m-2 font-medium text-gray-900'>
-                      Create account
+                      Create account Duy Bao
                     </a>
                   </div>
                 </div>
@@ -282,7 +285,7 @@ export default function Navigation() {
                       alt=''
                       className='flex-shrink-0 block w-5 h-auto'
                     />
-                    <span className='block ml-3 text-base font-medium text-gray-900'>CAD</span>
+                    <span className='block ml-3 text-base font-medium text-gray-900'>CADAA</span>
                     <span className='sr-only'>, change currency</span>
                   </a>
                 </div>
@@ -303,7 +306,7 @@ export default function Navigation() {
               <button
                 type='button'
                 className='p-2 text-gray-400 bg-white rounded-md lg:hidden'
-                onClick={() => setOpen(true)}
+                onClick={() => setState.open(true)}
               >
                 <span className='sr-only'>Open menu</span>
                 <Bars3Icon className='w-6 h-6' aria-hidden='true' />
@@ -447,7 +450,7 @@ export default function Navigation() {
                   </a>
                 </div>
 
-                <div className='hidden lg:ml-8 lg:flex'>
+                {/* <div className='hidden lg:ml-8 lg:flex'>
                   <a href='#' className='flex items-center text-gray-700 hover:text-gray-800'>
                     <img
                       src='https://tailwindui.com/img/flags/flag-canada.svg'
@@ -457,7 +460,7 @@ export default function Navigation() {
                     <span className='block ml-3 text-sm font-medium'>CAD</span>
                     <span className='sr-only'>, change currency</span>
                   </a>
-                </div>
+                </div> */}
 
                 {/* Search */}
                 <div className='flex lg:ml-6'>
