@@ -1,4 +1,4 @@
-import Navigation from './customer/components/navigation/Navigation';
+import Navigation from './customer/components/navigation/navbar';
 import { HomePage } from './customer/page/homePage/homePage';
 import './App.css';
 import FooterDefault from './customer/components/footer/footer';
