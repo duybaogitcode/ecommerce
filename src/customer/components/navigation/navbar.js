@@ -270,9 +270,9 @@ export default function Navigation() {
                 <div className='px-4 py-6 space-y-6 border-t border-gray-200'>
                   <div className='flow-root'>
                     <Link to='/login'>
-                      <a href='#' className='block p-2 -m-2 font-medium text-gray-900'>
+                      <p href='#' className='block p-2 -m-2 font-medium text-gray-900'>
                         Sign in
-                      </a>
+                      </p>
                     </Link>
                   </div>
                   <div className='flow-root'>
@@ -446,9 +446,7 @@ export default function Navigation() {
               <div className='flex items-center ml-auto'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
                   <Link to='/login'>
-                    <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
-                      Sign in
-                    </a>
+                    <p className='text-sm font-medium text-gray-700 hover:text-gray-800'>Sign in</p>
                   </Link>
                   <span className='w-px h-6 bg-gray-200' aria-hidden='true' />
                   <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
