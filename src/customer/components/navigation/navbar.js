@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import './navbar.css';
 import { useCart } from '../context/cartContext';
+import { Link } from 'react-router-dom';
 
 const navigation = {
   categories: [
@@ -268,9 +269,11 @@ export default function Navigation() {
 
                 <div className='px-4 py-6 space-y-6 border-t border-gray-200'>
                   <div className='flow-root'>
-                    <a href='#' className='block p-2 -m-2 font-medium text-gray-900'>
-                      Sign in
-                    </a>
+                    <Link to='/login'>
+                      <a href='#' className='block p-2 -m-2 font-medium text-gray-900'>
+                        Sign in
+                      </a>
+                    </Link>
                   </div>
                   <div className='flow-root'>
                     <a href='#' className='block p-2 -m-2 font-medium text-gray-900'>
@@ -442,9 +445,11 @@ export default function Navigation() {
 
               <div className='flex items-center ml-auto'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                  <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
-                    Sign in
-                  </a>
+                  <Link to='/login'>
+                    <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                      Sign in
+                    </a>
+                  </Link>
                   <span className='w-px h-6 bg-gray-200' aria-hidden='true' />
                   <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
                     Create account

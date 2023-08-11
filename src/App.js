@@ -5,6 +5,7 @@ import './App.css';
 import FooterDefault from './customer/components/footer/footer';
 import { CartProvider } from './customer/components/context/cartContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LoginPage from './customer/page/login/loginPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path='/' exact Component={HomePage} />
               <Route path='/details/:id' exact Component={productDetails} />
+              <Route path='/login' exact Component={LoginPage} />
             </Routes>
           </div>
         </CartProvider>
