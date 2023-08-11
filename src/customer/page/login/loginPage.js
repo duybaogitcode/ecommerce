@@ -1,25 +1,36 @@
 import React from 'react';
 import app from '../../components/firebase/firebase';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import axios from 'axios';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 export default function LoginPage() {
   const auth = getAuth(app);
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        const accesstoken = credential.accessToken;
+
+        console.log(accesstoken);
 
         const user = result.user;
+        const token = await user.getIdToken();
+
+        console.log(token);
+
+        axios
+          .post('http://localhost:8080/ecom/verify-token', { idToken: token })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error.messages);
+          });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        const email = error.customData.email;
-
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(error);
       });
   };
 
