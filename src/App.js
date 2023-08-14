@@ -1,9 +1,9 @@
-import Navigation from './customer/components/navigation/navbar';
+import Navigation from './customer/layout/navigation/navbar';
 import { HomePage } from './customer/page/homePage/homePage';
-import productDetails from './customer/components/product/productDetails';
+import productDetails from './customer/page/product/productDetails';
 import './App.css';
-import FooterDefault from './customer/components/footer/footer';
-import { CartProvider } from './customer/components/context/cartContext';
+import FooterDefault from './customer/layout/footer/footer';
+import { CartProvider } from './customer/context/cartContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './customer/page/login/loginPage';
 

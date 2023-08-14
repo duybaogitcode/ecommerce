@@ -13,12 +13,15 @@ export default function LoginPage() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const accesstoken = credential.accessToken;
 
-        console.log(accesstoken);
-
         const user = result.user;
+
+        const refreshToken = user.refreshToken;
+
+        console.log('Day la refresh token' + refreshToken);
+
         const token = await user.getIdToken();
 
-        console.log(token);
+        console.log('Day la token ' + token);
 
         axios
           .post('http://localhost:8080/ecom/verify-token', { idToken: token })

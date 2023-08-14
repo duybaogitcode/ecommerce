@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { useCart } from '../context/cartContext';
+import { useCart } from '../../context/cartContext';
 import { Link } from 'react-router-dom';
 
 export default function HomeSectionCard({ item }) {
