@@ -3,11 +3,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import axios from 'axios';
 
 const auth = getAuth(app);
-const userData = {
-  email: {},
-  name: {},
-  picture: {},
-};
 
 export const googleLogin = async () => {
   try {
