@@ -1,7 +1,21 @@
 import React from 'react';
 import { googleLogin } from '../../services/authServices';
+import { useAuth } from '../../context/authContext';
 
 export default function LoginPage() {
+  const { login, user } = useAuth();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const userData = await googleLogin();
+      console.log(userData.email);
+      login(userData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <div className='flex flex-col justify-center min-h-full px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
@@ -78,8 +92,8 @@ export default function LoginPage() {
       </div>
       <div className='mx-auto mt-6'>
         <button
-          type='button'
-          onClick={googleLogin}
+          // type='button'
+          onClick={handleLogin}
           className='flex gap-2 px-4 py-2 transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow'
         >
           <img
