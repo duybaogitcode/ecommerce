@@ -9,17 +9,14 @@ export const googleLogin = () => {
   signInWithPopup(auth, provider)
     .then(async (result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
+
       const accesstoken = credential.accessToken;
 
       const user = result.user;
 
       const refreshToken = user.refreshToken;
 
-      console.log('Day la refresh token' + refreshToken);
-
       const token = await user.getIdToken();
-
-      console.log('Day la token ' + token);
 
       axios
         .post('http://localhost:8080/ecom/verify-token', { idToken: token })

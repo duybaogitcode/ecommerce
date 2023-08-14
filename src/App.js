@@ -6,20 +6,23 @@ import FooterDefault from './customer/layout/footer/footer';
 import { CartProvider } from './customer/context/cartContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './customer/page/login/loginPage';
+import { AuthProvider } from './customer/context/authContext';
 
 function App() {
   return (
     <BrowserRouter>
       <div className='App'>
         <CartProvider>
-          <Navigation></Navigation>
-          <div>
-            <Routes>
-              <Route path='/' exact Component={HomePage} />
-              <Route path='/details/:id' exact Component={productDetails} />
-              <Route path='/login' exact Component={LoginPage} />
-            </Routes>
-          </div>
+          <AuthProvider>
+            <Navigation></Navigation>
+            <div>
+              <Routes>
+                <Route path='/' exact Component={HomePage} />
+                <Route path='/details/:id' exact Component={productDetails} />
+                <Route path='/login' exact Component={LoginPage} />
+              </Routes>
+            </div>
+          </AuthProvider>
         </CartProvider>
         <FooterDefault></FooterDefault>
       </div>
