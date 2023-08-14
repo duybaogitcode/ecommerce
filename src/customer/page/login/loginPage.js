@@ -1,42 +1,7 @@
 import React from 'react';
-import app from '../../components/firebase/firebase';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import axios from 'axios';
-import { wait } from '@testing-library/user-event/dist/utils';
+import { googleLogin } from '../../services/authServices';
 
 export default function LoginPage() {
-  const auth = getAuth(app);
-  const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const accesstoken = credential.accessToken;
-
-        const user = result.user;
-
-        const refreshToken = user.refreshToken;
-
-        console.log('Day la refresh token' + refreshToken);
-
-        const token = await user.getIdToken();
-
-        console.log('Day la token ' + token);
-
-        axios
-          .post('http://localhost:8080/ecom/verify-token', { idToken: token })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error.messages);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
     <div className='flex flex-col justify-center min-h-full px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
@@ -114,7 +79,7 @@ export default function LoginPage() {
       <div className='mx-auto mt-6'>
         <button
           type='button'
-          onClick={handleGoogleLogin}
+          onClick={googleLogin}
           className='flex gap-2 px-4 py-2 transition duration-150 border rounded-lg border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow'
         >
           <img
