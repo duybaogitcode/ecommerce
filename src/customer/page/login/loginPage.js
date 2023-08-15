@@ -1,16 +1,18 @@
 import React from 'react';
 import { googleLogin } from '../../services/authServices';
 import { useAuth } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const { login, user } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
       const userData = await googleLogin();
-      console.log(userData.email);
       login(userData);
+      navigate('/');
     } catch (e) {
       console.log(e.message);
     }

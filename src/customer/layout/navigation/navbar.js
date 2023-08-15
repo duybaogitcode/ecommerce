@@ -9,6 +9,7 @@ import {
 import './navbar.css';
 import { useCart } from '../../context/cartContext';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 const navigation = {
   categories: [
@@ -142,6 +143,7 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const { cartCount } = useCart();
+  const { user, logout } = useAuth();
   const [state, setState] = useState({
     open: false,
   });
@@ -150,7 +152,11 @@ export default function Navigation() {
     <div className='bg-white'>
       {/* Mobile menu */}
       <Transition.Root show={state.open} as={Fragment}>
-        <Dialog as='div' className='relative z-40 lg:hidden' onClose={setState.open}>
+        <Dialog
+          as='div'
+          className='relative z-40 lg:hidden'
+          onClose={() => setState({ ...state, open: false })}
+        >
           <Transition.Child
             as={Fragment}
             enter='transition-opacity ease-linear duration-300'
@@ -178,7 +184,7 @@ export default function Navigation() {
                   <button
                     type='button'
                     className='inline-flex items-center justify-center p-2 -m-2 text-gray-400 rounded-md'
-                    onClick={() => setState.open(false)}
+                    onClick={() => setState({ ...state, open: true })}
                   >
                     <span className='sr-only'>Close menu</span>
                     <XMarkIcon className='w-6 h-6' aria-hidden='true' />
@@ -310,7 +316,7 @@ export default function Navigation() {
               <button
                 type='button'
                 className='p-2 text-gray-400 bg-white rounded-md lg:hidden'
-                onClick={() => setState.open(true)}
+                onClick={() => setState({ ...state, open: true })}
               >
                 <span className='sr-only'>Open menu</span>
                 <Bars3Icon className='w-6 h-6' aria-hidden='true' />
@@ -444,15 +450,34 @@ export default function Navigation() {
               </Popover.Group>
 
               <div className='flex items-center ml-auto'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                  <Link to='/login'>
-                    <p className='text-sm font-medium text-gray-700 hover:text-gray-800'>Sign in</p>
-                  </Link>
-                  <span className='w-px h-6 bg-gray-200' aria-hidden='true' />
-                  <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
-                    Create account
-                  </a>
-                </div>
+                {user ? (
+                  <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+                    <p className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                      {user.name}
+                    </p>
+
+                    <span className='w-px h-6 bg-gray-200' aria-hidden='true' />
+                    <img className='w-8 h-8 rounded-full' src={user.picture}></img>
+                    <button
+                      onClick={logout}
+                      className='text-sm font-medium text-gray-700 hover:text-gray-800'
+                    >
+                      Log out
+                    </button>
+                  </div>
+                ) : (
+                  <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+                    <Link to='/login'>
+                      <p className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                        Sign in
+                      </p>
+                    </Link>
+                    <span className='w-px h-6 bg-gray-200' aria-hidden='true' />
+                    <a href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                      Create account
+                    </a>
+                  </div>
+                )}
 
                 {/* <div className='hidden lg:ml-8 lg:flex'>
                   <a href='#' className='flex items-center text-gray-700 hover:text-gray-800'>
