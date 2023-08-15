@@ -1,9 +1,13 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartCount, setCartCount] = useState(0);
+  const [cartCount, setCartCount] = useState(localStorage.getItem('cartCount') || 0);
+
+  useEffect(() => {
+    localStorage.setItem('cartCount', cartCount);
+  }, [cartCount]);
 
   return (
     <CartContext.Provider value={{ cartCount, setCartCount }}>{children}</CartContext.Provider>

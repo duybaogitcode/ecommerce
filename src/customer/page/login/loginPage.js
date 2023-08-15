@@ -4,7 +4,7 @@ import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
