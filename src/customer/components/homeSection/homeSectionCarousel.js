@@ -5,17 +5,24 @@ import { Button } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { itemsImage } from './item';
+import { useProduct } from '../../context/productContext';
 
 function HomeSectionCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const items = itemsImage.map((item) => <HomeSectionCard item={item} />);
+  const [state, setState] = useState({
+    activeIndex: 0,
+    isMaxPrev: false,
+    isMaxNext: false,
+  });
 
-  const prev = () => {
-    setActiveIndex((prevIndex) => Math.max(prevIndex - 5, 0));
-  };
+  const API = process.env.REACT_APP_LOCAL;
 
-  const next = () => {
-    setActiveIndex((prevIndex) => Math.min(prevIndex + 5, itemsImage.length - 1));
-  };
+  const { isLoading, isError, products, getProducts } = useProduct();
+
+  const prev = () => setState({ ...state, activeIndex: state.activeIndex - 1 });
+  const next = () => setState({ ...state, activeIndex: state.activeIndex + 1 });
+  const syncActiveIndex = (currentState) =>
+    setState({ ...state, activeIndex: currentState.activeIndex });
 
   const responsive = {
     0: { items: 1 },
@@ -25,12 +32,13 @@ function HomeSectionCarousel() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % itemsImage.length);
-    }, 3000);
+      setState((currentState) => ({
+        ...state,
+        activeIndex: (currentState.activeIndex + 1) % items.length,
+      }));
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
-
-  const items = itemsImage.map((item) => <HomeSectionCard item={item} />);
   return (
     <div className='flex items-center border desktop:px-4'>
       <Button
@@ -42,13 +50,12 @@ function HomeSectionCarousel() {
         <KeyboardArrowLeftIcon></KeyboardArrowLeftIcon>
       </Button>
       <AliceCarousel
-        items={items}
         disableDotsControls
         disableButtonsControls
-        infinite
+        items={items}
+        activeIndex={state.activeIndex}
         responsive={responsive}
-        onSlideChanged={setActiveIndex}
-        activeIndex={activeIndex}
+        onSlideChanged={syncActiveIndex}
       />
       <Button
         onClick={next}

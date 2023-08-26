@@ -19,12 +19,11 @@ export const googleLogin = async () => {
 
     const token = await user.getIdToken();
 
-    const response = await axios.post(
-      'https://ecommerce-be-production.up.railway.app/ecom/verify-token',
-      {
-        idToken: token,
-      }
-    );
+    console.log(token);
+
+    const response = await axios.post(`${process.env.REACT_APP_LOCAL}/verify-token`, {
+      idToken: token,
+    });
 
     const userData = {
       email: response.data.email,
