@@ -21,7 +21,7 @@ export const googleLogin = async () => {
 
     console.log(token);
 
-    const response = await axios.post(`${process.env.REACT_APP_LOCAL}/verify-token`, {
+    const response = await axios.post(`${process.env.REACT_APP_API}/verify-token`, {
       idToken: token,
     });
 

@@ -11,16 +11,33 @@ function HomeSectionCarousel() {
   const items = itemsImage.map((item) => <HomeSectionCard item={item} />);
   const [state, setState] = useState({
     activeIndex: 0,
-    isMaxPrev: false,
+    isMaxPrev: true,
     isMaxNext: false,
+    isAutoPlay: false,
   });
 
-  const API = process.env.REACT_APP_LOCAL;
+  console.log(JSON.stringify(state.activeIndex));
 
-  const { isLoading, isError, products, getProducts } = useProduct();
+  // const API = process.env.REACT_APP_LOCAL;
 
-  const prev = () => setState({ ...state, activeIndex: state.activeIndex - 1 });
-  const next = () => setState({ ...state, activeIndex: state.activeIndex + 1 });
+  // const { isLoading, isError, products, getProducts } = useProduct();
+
+  const prev = () =>
+    setState({
+      ...state,
+      activeIndex: Math.max(state.activeIndex - 1, 0),
+      isMaxPrev: state.activeIndex === 0,
+      isMaxNext: state.activeIndex === items.length - 1,
+      isAutoPlay: true,
+    });
+  const next = () =>
+    setState({
+      ...state,
+      activeIndex: Math.min(state.activeIndex + 1, items.length - 1),
+      isMaxPrev: state.activeIndex === 0,
+      isMaxNext: state.activeIndex === items.length - 1,
+      isAutoPlay: true,
+    });
   const syncActiveIndex = (currentState) =>
     setState({ ...state, activeIndex: currentState.activeIndex });
 
@@ -35,6 +52,8 @@ function HomeSectionCarousel() {
       setState((currentState) => ({
         ...state,
         activeIndex: (currentState.activeIndex + 1) % items.length,
+        isMaxNext: currentState.activeIndex === items.length - 1,
+        isMaxPrev: currentState.activeIndex === 0,
       }));
     }, 5000);
     return () => clearInterval(interval);
@@ -46,6 +65,7 @@ function HomeSectionCarousel() {
         variant='contained'
         className='z-50'
         sx={{ position: 'absolute', left: '0rem' }}
+        disabled={state.isMaxPrev}
       >
         <KeyboardArrowLeftIcon></KeyboardArrowLeftIcon>
       </Button>
@@ -62,6 +82,7 @@ function HomeSectionCarousel() {
         variant='contained'
         className='z-50'
         sx={{ position: 'absolute', right: '0rem' }}
+        disabled={state.isMaxNext}
       >
         <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
       </Button>
